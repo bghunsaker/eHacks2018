@@ -59,6 +59,8 @@ public class GooseGameActivity extends Activity implements
 
     private static final String COMMAND_SEARCH = "commands";
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
+    private String currCommandToShare = "";
+
 
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
@@ -154,6 +156,8 @@ public class GooseGameActivity extends Activity implements
             switchSearch(COMMAND_SEARCH);
         else
             ((TextView) findViewById(R.id.result_text)).setText(text);
+        //This command will be passed via a shared intent.actionview
+        currCommandToShare = text;
     }
 
     /**
@@ -165,6 +169,9 @@ public class GooseGameActivity extends Activity implements
         if (hypothesis != null) {
             String text = hypothesis.getHypstr();
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+
+            //This command will be passed via a shared intent.actionview
+            currCommandToShare = text;
         }
     }
 
@@ -219,4 +226,9 @@ public class GooseGameActivity extends Activity implements
     @Override
     public void onTimeout() {
     }
+
+    public String shareCommand() {
+        return currCommandToShare;
+    }
+
 }
