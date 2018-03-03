@@ -2,8 +2,11 @@
 
 grammar commands;
 
-<command> =  crouch     |
+<command> =  duck       |
              jump       |
+             stop       |
+             go         |
+             start      |
              shoot      ;
 
 public <commands> = <command>+;
