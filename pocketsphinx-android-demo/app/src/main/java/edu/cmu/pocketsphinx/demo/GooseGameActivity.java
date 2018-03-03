@@ -59,6 +59,8 @@ public class GooseGameActivity extends Activity implements
 
     private static final String COMMAND_SEARCH = "commands";
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
+    
+    
 
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
@@ -87,6 +89,8 @@ public class GooseGameActivity extends Activity implements
 
     private static class SetupTask extends AsyncTask<Void, Void, Exception> {
         WeakReference<GooseGameActivity> activityReference;
+    private mRecorder mMediaRecorder;
+       private int volume;
         SetupTask(GooseGameActivity activity) {
             this.activityReference = new WeakReference<>(activity);
         }
@@ -96,10 +100,19 @@ public class GooseGameActivity extends Activity implements
                 Assets assets = new Assets(activityReference.get());
                 File assetDir = assets.syncAssets();
                 activityReference.get().setupRecognizer(assetDir);
+                  mRecorder = new MediaRecorder();
+                    mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                    mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+                    mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                    mRecorder.setOutputFile("/dev/null"); 
+                    mRecorder.prepare();
+                    
             } catch (IOException e) {
                 return e;
             }
+            mRecorder.start();
             return null;
+            
         }
         @Override
         protected void onPostExecute(Exception result) {
@@ -163,13 +176,14 @@ public class GooseGameActivity extends Activity implements
     public void onResult(Hypothesis hypothesis) {
         ((TextView) findViewById(R.id.result_text)).setText("");
         if (hypothesis != null) {
-            String text = hypothesis.getHypstr();
+            String text = hypothesis.getHypstr()+" Volume:"+volume;
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onBeginningOfSpeech() {
+        volume=mRecorder.getMaxAmplitude();
     }
 
     /**
@@ -191,7 +205,7 @@ public class GooseGameActivity extends Activity implements
     private void setupRecognizer(File assetsDir) throws IOException {
         // The recognizer can be configured to perform multiple searches
         // of different kind and switch between them
-
+        
         recognizer = SpeechRecognizerSetup.defaultSetup()
                 .setAcousticModel(new File(assetsDir, "en-us-ptm"))
                 .setDictionary(new File(assetsDir, "cmudict-en-us.dict"))
