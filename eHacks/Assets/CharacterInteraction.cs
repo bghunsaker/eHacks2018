@@ -29,9 +29,6 @@ public class CharacterInteraction : MonoBehaviour {
 
         }
 
-
-
-
         if (Input.GetKey(KeyCode.S))
 			transform.Translate(new Vector3(0, -1, 0));
 
@@ -44,39 +41,30 @@ public class CharacterInteraction : MonoBehaviour {
         //if (y < -18) {
         //    transform.Translate(new Vector3(0, 1, 0));
         //}
-
-		// if (Event.current.Equals(Event.KeyboardEvent(KeyCode.Space.ToString())) || Event.current.Equals(Event.KeyboardEvent(KeyCode.W.ToString())))
-		// 	//rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpHeight);
-
-		// if(Input.GetKey(KeyCode.D)) {
-            
-		// }
-		// if(Input.GetKey(KeyCode.A)) {
-        //     transform.Translate(new Vector3(-1, 0, 0));
-		// }
-
-		// if(Input.GetKey(KeyCode.)) {
-			
-		// }
 	}
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         //Level i to Level i+1
-        if (coll.gameObject.name == "Platform14" || coll.gameObject.name == "Platform2.5") {
+        if (coll.gameObject.name == "Platform14" || coll.gameObject.name == "Platform2.5" 
+            || coll.gameObject.name == "Platform3.9" || coll.gameObject.name == "Platform4.13") {
             //Camera & Character Move to Next Level Position
             for( int i = 0; i < 65; i++)
             {
+                //Teleport to next level
                 transform.Translate(Vector2.right);
             }
             
         }
         //Death Scenarios LVL2
-        if (coll.gameObject.name == "Spikes2.1" || coll.gameObject.name == "Spikes2.2")
+        if (coll.gameObject.name == "Spikes2.1" || coll.gameObject.name == "Spikes2.2" 
+            || coll.gameObject.name == "Spikes3.1" || coll.gameObject.name == "Spikes3.2" 
+            || coll.gameObject.name == "Spikes3.3" || coll.gameObject.name == "Spikes3.4" 
+            || coll.gameObject.name == "Spikes4.1" || coll.gameObject.name == "Spikes4.2" 
+            || coll.gameObject.name == "Spikes4.3")
         {
-            //transform.Translate(Vector2.left);
+            //Sets the user back to the start of Level 1
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
         }
 
     }
