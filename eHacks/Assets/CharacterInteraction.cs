@@ -17,17 +17,26 @@ public class CharacterInteraction : MonoBehaviour {
 	void Update () {
 		
 
-		if (Input.GetKey(KeyCode.D))
-			transform.Translate(new Vector3(1, 0, 0));
-
-		if (Input.GetKey(KeyCode.A))
-			transform.Translate(new Vector3(-1, 0, 0));
+		//if (Input.GetKey(KeyCode.D))
+			transform.Translate(new Vector3(.15f, 0, 0));
+        
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    while (!Input.GetKey(KeyCode.Z))
+        //    {
+        //        transform.Translate(new Vector3(-.15f, 0, 0));
+        //    }
+        
+        //}
+            
+        
+			
 
 		if (Input.GetKey(KeyCode.S))
 			transform.Translate(new Vector3(0, -1, 0));
 
 		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
-			transform.Translate(new Vector3(0, 1, 0));
+			transform.Translate(new Vector3(0, .75f, 0));
 
         //var y = Input.GetAxis("Vertical");
         //var x = Input.GetAxis("Horizontal");
@@ -53,8 +62,20 @@ public class CharacterInteraction : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        //Level i to Level i+1
         if (coll.gameObject.name == "Platform14") {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //Camera & Character Move to Next Level Position
+            for( int i = 0; i < 65; i++)
+            {
+                transform.Translate(Vector2.right);
+            }
+            
         }
+
+        //Restarting Level (If it hits trap)
+
+        
+
+
     }
 }
