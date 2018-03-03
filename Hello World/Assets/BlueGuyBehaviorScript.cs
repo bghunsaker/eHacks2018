@@ -11,14 +11,16 @@ public class BlueGuyBehaviorScript : MonoBehaviour {
 
         if (col.gameObject.name =="dropBox1")
         {
-            
             Debug.Log("Dead");
-            
                 transform.Translate(Vector2.left);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            
-            
-        } 
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        }
+        if (col.gameObject.name == "cannonBall")
+        {
+            Debug.Log("Dead");
+            transform.Translate(Vector2.left);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     // Use this for initialization

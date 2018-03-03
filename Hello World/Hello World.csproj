@@ -286,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BlueGuyBehaviorScript.cs" />
+    <Compile Include="Assets\CannonBallBehavior.cs" />
     <Compile Include="Assets\CharacterBehaviorScript.cs" />
     <Compile Include="Assets\DroppingBoxBehavior.cs" />
     <Compile Include="Assets\platform-builder-pro\Demo\scripts\Ball.cs" />
