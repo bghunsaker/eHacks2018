@@ -15,24 +15,24 @@ public class CharacterInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 
-		//if (Input.GetKey(KeyCode.D))
-			transform.Translate(new Vector3(.15f, 0, 0));
-        
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    while (!Input.GetKey(KeyCode.Z))
-        //    {
-        //        transform.Translate(new Vector3(-.15f, 0, 0));
-        //    }
-        
-        //}
-            
-        
-			
+        int counter = 0;
 
-		if (Input.GetKey(KeyCode.S))
+		transform.Translate(new Vector3(.15f, 0, 0));
+        
+        if (Input.GetKey(KeyCode.A))
+        {
+            for (counter = 0; counter < 5; counter++)
+            {
+                transform.Translate(new Vector3(-.15f, 0, 0));
+            }
+
+        }
+
+
+
+
+        if (Input.GetKey(KeyCode.S))
 			transform.Translate(new Vector3(0, -1, 0));
 
 		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
@@ -63,7 +63,7 @@ public class CharacterInteraction : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll)
     {
         //Level i to Level i+1
-        if (coll.gameObject.name == "Platform14") {
+        if (coll.gameObject.name == "Platform14" || coll.gameObject.name == "Platform2.5") {
             //Camera & Character Move to Next Level Position
             for( int i = 0; i < 65; i++)
             {
@@ -71,11 +71,13 @@ public class CharacterInteraction : MonoBehaviour {
             }
             
         }
+        //Death Scenarios LVL2
+        if (coll.gameObject.name == "Spikes2.1" || coll.gameObject.name == "Spikes2.2")
+        {
+            //transform.Translate(Vector2.left);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-        //Restarting Level (If it hits trap)
-
-        
-
+        }
 
     }
 }
