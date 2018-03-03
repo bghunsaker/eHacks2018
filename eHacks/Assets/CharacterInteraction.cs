@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CharacterInteraction : MonoBehaviour {
@@ -28,7 +29,8 @@ public class CharacterInteraction : MonoBehaviour {
 		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
 			transform.Translate(new Vector3(0, 1, 0));
 
-        var y = Input.GetAxis("Vertical");
+        //var y = Input.GetAxis("Vertical");
+        //var x = Input.GetAxis("Horizontal");
 
         //if (y < -18) {
         //    transform.Translate(new Vector3(0, 1, 0));
@@ -48,4 +50,11 @@ public class CharacterInteraction : MonoBehaviour {
 			
 		// }
 	}
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.name == "Platform14") {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 }
