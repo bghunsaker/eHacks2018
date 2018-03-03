@@ -28,6 +28,12 @@ public class CharacterInteraction : MonoBehaviour {
 		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
 			transform.Translate(new Vector3(0, 1, 0));
 
+        var y = Input.GetAxis("Vertical");
+
+        //if (y < -18) {
+        //    transform.Translate(new Vector3(0, 1, 0));
+        //}
+
 		// if (Event.current.Equals(Event.KeyboardEvent(KeyCode.Space.ToString())) || Event.current.Equals(Event.KeyboardEvent(KeyCode.W.ToString())))
 		// 	//rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpHeight);
 
