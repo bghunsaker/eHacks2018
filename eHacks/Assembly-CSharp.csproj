@@ -59,6 +59,7 @@
      <Compile Include="Assets\GroundBehavior.cs" />
      <Compile Include="Assets\Platform4_4UpDownScript.cs" />
      <Compile Include="Assets\Platform4_7LeftRightScript.cs" />
+     <Compile Include="Assets\Platform5_4RotateScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

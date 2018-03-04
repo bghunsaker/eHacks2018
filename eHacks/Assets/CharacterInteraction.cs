@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterInteraction : MonoBehaviour {
-	//Variables
-	public float speed = 10.0f;
+    //Variables
+    Image myImageComponent;
+    public GameObject player;
+    public GameObject goose;
+    private Vector3 offset;
+    public Sprite duckPosition;
+    public Sprite uprightPosition;
+    public GameObject position = new GameObject();
+    public float speed = 10.0f;
 	public float jumpHeight = 20.0f;
     public int level = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+
+    // Use this for initialization
+    void Start () {
+        myImageComponent = GetComponent<Image>();
+        player = GameObject.Find("deer");
+        offset = transform.position - player.transform.position;
+        //string gooseID = GameObject.
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -30,10 +42,26 @@ public class CharacterInteraction : MonoBehaviour {
 
         }
 
-        if (Input.GetKey(KeyCode.S))
-			transform.Translate(new Vector3(0, -1, 0));
+        if (Input.GetKey(KeyCode.F))
+        {
+        
 
-		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            //transform.Translate(new Vector3(0, -1, 0));
+            //myImageComponent.sprite = duckPosition;
+            GetComponent<SpriteRenderer>().sprite = duckPosition;
+            
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            GetComponent<SpriteRenderer>().sprite = uprightPosition;
+        }
+
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space) || (Input.GetTouch(0).phase == TouchPhase.Stationary))
 			transform.Translate(new Vector3(0, .75f, 0));
 
         //var y = Input.GetAxis("Vertical");
@@ -42,6 +70,8 @@ public class CharacterInteraction : MonoBehaviour {
         //if (y < -18) {
         //    transform.Translate(new Vector3(0, 1, 0));
         //}
+        
+
 	}
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -81,19 +111,21 @@ public class CharacterInteraction : MonoBehaviour {
                 SceneManager.UnloadSceneAsync(level - 1);
             }
             if (coll.gameObject.name == "Platform5.Exit") {
-                level = 5;
+                level = 0;
                 SceneManager.LoadScene(level);
-                SceneManager.UnloadSceneAsync(level - 1);
+                SceneManager.UnloadSceneAsync(4);
             }
             transform.Translate(5*Vector2.up);
         }
         //Death Scenarios LVL2
-        if (coll.gameObject.name == "Spikes2.1" || coll.gameObject.name == "Spikes2.2" 
-            || coll.gameObject.name == "Spikes3.1" || coll.gameObject.name == "Spikes3.2" 
-            || coll.gameObject.name == "Spikes3.3" || coll.gameObject.name == "Spikes3.4" 
-            || coll.gameObject.name == "Spikes4.1" || coll.gameObject.name == "Spikes4.2" 
-            || coll.gameObject.name == "Spikes4.3")
-            //Add All Spikes Here
+        if (
+            //Spikes
+            coll.gameObject.name.Contains("Spikes")
+            
+            //Geese
+            || coll.gameObject.name.Contains("cgoose")
+            )
+
         {
             //Sets the user back to the start of Level 1
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -103,3 +135,12 @@ public class CharacterInteraction : MonoBehaviour {
 
     }
 }
+
+
+/* TRASH
+ coll.gameObject.name == "Spikes2.1" || coll.gameObject.name == "Spikes2.2" 
+            || coll.gameObject.name == "Spikes3.1" || coll.gameObject.name == "Spikes3.2" 
+            || coll.gameObject.name == "Spikes3.3" || coll.gameObject.name == "Spikes3.4" 
+            || coll.gameObject.name == "Spikes4.1" || coll.gameObject.name == "Spikes4.2" 
+            || coll.gameObject.name == "Spikes4.3"
+*/
