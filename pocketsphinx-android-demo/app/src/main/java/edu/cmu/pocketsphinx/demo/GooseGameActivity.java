@@ -1,4 +1,5 @@
-package edu.cmu.pocketsphinx.demo;
+/*Developed by Bryson Hunsaker, Jacob Bacon, Nick Kirkpatrick, and Dipak
+Subramaniam at eHacks 2018, St. Louis Mkissouri*/
 /* ====================================================================
  * Copyright (c) 2014 Alpha Cephei Inc.  All rights reserved.
  *
@@ -29,19 +30,22 @@ package edu.cmu.pocketsphinx.demo;
  * ====================================================================
  */
 
-
+package edu.cmu.pocketsphinx.demo;
 import android.Manifest;
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -59,7 +63,7 @@ public class GooseGameActivity extends Activity implements
 
     private static final String COMMAND_SEARCH = "commands";
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
-    private String currCommandToShare = "";
+    private static String currCommandToShare = "";
 
 
     private SpeechRecognizer recognizer;
@@ -154,10 +158,15 @@ public class GooseGameActivity extends Activity implements
         String text = hypothesis.getHypstr();
         if (text.equals(COMMAND_SEARCH))
             switchSearch(COMMAND_SEARCH);
-        else
+        else {
             ((TextView) findViewById(R.id.result_text)).setText(text);
-        //This command will be passed via a shared intent.actionview
-        currCommandToShare = text;
+            //Simulates keystrokes corresponding to the word that popped up
+            //simulateKeyPresses(text);
+            //This command will be passed via a shared intent.actionview
+            currCommandToShare = text;
+        }
+
+
     }
 
     /**
@@ -169,9 +178,16 @@ public class GooseGameActivity extends Activity implements
         if (hypothesis != null) {
             String text = hypothesis.getHypstr();
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+try {
+
+    //simulateKeyPresses(text);
+    FileOutputStream fOut = openFileOutput("commands.text",  MODE_WORLD_READABLE);
+    fOut.close();
+
+    } catch(IOException e) { }
 
             //This command will be passed via a shared intent.actionview
-            currCommandToShare = text;
+            //currCommandToShare = text;
         }
     }
 
@@ -185,6 +201,45 @@ public class GooseGameActivity extends Activity implements
     @Override
     public void onEndOfSpeech() {
     }
+
+//    public void simulateKeyPresses(String text){
+//        System.out.println("\n\n\n***************IN CASE********************\n\n\n");
+//        //Press a key corresponding to the word being output
+//        //Instrumentation inst = new Instrumentation();
+////        switch(text) {
+//
+////            case "jump":
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_W));
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_W));
+////                //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_W);
+////                break;
+////            case "duck":
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_S));
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_S));
+////                break;
+////            case "shoot":
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_P));
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_P));
+////                break;
+////            case "back":
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_A));
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_A));
+////                break;
+////            case "forward":
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_D));
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_D));
+////                break;
+////            case "start":
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_Q));
+////                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_Q));
+////                break;
+////        }
+//
+//
+//
+//
+//    }
+
 
     private void switchSearch(String searchName) {
         recognizer.stop();
@@ -227,7 +282,7 @@ public class GooseGameActivity extends Activity implements
     public void onTimeout() {
     }
 
-    public String shareCommand() {
+    public static String shareCommand() {
         return currCommandToShare;
     }
 

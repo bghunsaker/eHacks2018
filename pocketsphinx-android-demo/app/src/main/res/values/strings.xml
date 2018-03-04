@@ -6,7 +6,7 @@
     <string name="kws_caption">To start demonstration say \"menu\".</string>
     <string name="menu_caption">Say \"digits\", \"forecast\" , \"phones\"  or \"commands\" to choose the grammar, language model, phonetic decoder or game commands example.</string>
     <string name="digits_caption">To try recognition of digits: say something like \"one two three four five\".</string>
-    <string name="command_caption">To try recognition of a command such as  \"jump, crouch, or shoot\".</string>
+    <string name="command_caption">To try recognition of a command such as  \"jump, go, stop, start, duck, or shoot\".</string>
     <string name="forecast_caption">To try recognition of a weather forecast like \"sunny spells on Wednesday\".</string>
     <string name="phone_caption">To try phonetic recognition say anything.</string>
 </resources>
