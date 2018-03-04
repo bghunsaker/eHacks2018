@@ -49,12 +49,12 @@ public class CharacterInteraction : MonoBehaviour {
         if (coll.gameObject.name == "Platform14" || coll.gameObject.name == "Platform2.5" 
             || coll.gameObject.name == "Platform3.9" || coll.gameObject.name == "Platform4.13") {
             //Camera & Character Move to Next Level Position
-            for( int i = 0; i < 65; i++)
+            for( int i = 0; i < 68; i++)
             {
                 //Teleport to next level
                 transform.Translate(Vector2.right);
             }
-            
+            transform.Translate(5*Vector2.up);
         }
         //Death Scenarios LVL2
         if (coll.gameObject.name == "Spikes2.1" || coll.gameObject.name == "Spikes2.2" 
