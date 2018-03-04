@@ -55,6 +55,7 @@
      <Compile Include="Assets\CameraMovement2.cs" />
      <Compile Include="Assets\CannonBallShoot.cs" />
      <Compile Include="Assets\CharacterInteraction.cs" />
+     <Compile Include="Assets\GooseInteractionScript.cs" />
      <Compile Include="Assets\GroundBehavior.cs" />
      <Compile Include="Assets\Platform4_4UpDownScript.cs" />
      <Compile Include="Assets\Platform4_7LeftRightScript.cs" />
