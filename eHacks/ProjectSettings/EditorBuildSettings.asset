@@ -8,6 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Goose.unity
     guid: c62d31591370cac4fb260ad9ff7ef372
-  - enabled: 1
+  - enabled: 0
     path: Assets/Goose2.unity
     guid: 6009ee6aaa629b544a61ab59bfe0a4ff
+  - enabled: 1
+    path: Assets/GooseLevel2.unity
+    guid: 09ead4d19434d2e4aaf46b065c731671
+  - enabled: 1
+    path: Assets/GooseLevel3.unity
+    guid: caf8532e2a685214eacc778589deb683
+  - enabled: 1
+    path: Assets/GooseLevel4.unity
+    guid: 13410dcdfea6d734fb8f106ed8f6716d
+  - enabled: 1
+    path: Assets/GooseLevel5.unity
+    guid: fda6b623f25ad67458a950fef5f0c5c3
+  - enabled: 1
+    path: Assets/GooseLevel6.unity
+    guid: 683e21c99dbea81469faaec787caaba8

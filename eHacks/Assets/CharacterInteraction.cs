@@ -16,7 +16,7 @@ public class CharacterInteraction : MonoBehaviour {
     public float speed = 10.0f;
 	public float jumpHeight = 20.0f;
     public int level = 0;
-
+    public int killCounter = 0;
 
     // Use this for initialization
     void Start () {
@@ -28,11 +28,11 @@ public class CharacterInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        int counter = 0;
-
-		transform.Translate(new Vector3(.15f, 0, 0));
         
+        int counter = 0; //enables buffer of movement
+		transform.Translate(new Vector3(.15f, 0, 0)); //Automatic movement of character (Synced to the screen/camera)
+        
+        //Move Backwards
         if (Input.GetKey(KeyCode.A))
         {
             for (counter = 0; counter < 5; counter++)
@@ -42,12 +42,13 @@ public class CharacterInteraction : MonoBehaviour {
 
         }
 
+        //Fire
         if (Input.GetKey(KeyCode.F))
         {
         
-
         }
 
+        //Duck
         if (Input.GetKeyDown(KeyCode.S))
         {
             //transform.Translate(new Vector3(0, -1, 0));
@@ -60,17 +61,9 @@ public class CharacterInteraction : MonoBehaviour {
             GetComponent<SpriteRenderer>().sprite = uprightPosition;
         }
 
-
+        //Jump
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space) || (Input.GetTouch(0).phase == TouchPhase.Stationary))
 			transform.Translate(new Vector3(0, .75f, 0));
-
-        //var y = Input.GetAxis("Vertical");
-        //var x = Input.GetAxis("Horizontal");
-
-        //if (y < -18) {
-        //    transform.Translate(new Vector3(0, 1, 0));
-        //}
-        
 
 	}
 
@@ -111,9 +104,14 @@ public class CharacterInteraction : MonoBehaviour {
                 SceneManager.UnloadSceneAsync(level - 1);
             }
             if (coll.gameObject.name == "Platform5.Exit") {
+                level = 5;
+                SceneManager.LoadScene(level);
+                SceneManager.UnloadSceneAsync(level - 1);
+            }
+            if (coll.gameObject.name == "Platform6.Exit") {
                 level = 0;
                 SceneManager.LoadScene(level);
-                SceneManager.UnloadSceneAsync(4);
+                SceneManager.UnloadSceneAsync(5);
             }
             transform.Translate(5*Vector2.up);
         }
@@ -121,26 +119,17 @@ public class CharacterInteraction : MonoBehaviour {
         if (
             //Spikes
             coll.gameObject.name.Contains("Spikes")
-            
-            //Geese
-            || coll.gameObject.name.Contains("cgoose")
-            )
-
+           )
         {
-            //Sets the user back to the start of Level 1
+            //Sets the user back to the start of their respective level
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             SceneManager.UnloadSceneAsync(level);
             level = 0;
         }
 
+        if (coll.gameObject.name.Contains("cgoose")) {
+            GameObject.Destroy(coll.gameObject);
+        }
+
     }
 }
-
-
-/* TRASH
- coll.gameObject.name == "Spikes2.1" || coll.gameObject.name == "Spikes2.2" 
-            || coll.gameObject.name == "Spikes3.1" || coll.gameObject.name == "Spikes3.2" 
-            || coll.gameObject.name == "Spikes3.3" || coll.gameObject.name == "Spikes3.4" 
-            || coll.gameObject.name == "Spikes4.1" || coll.gameObject.name == "Spikes4.2" 
-            || coll.gameObject.name == "Spikes4.3"
-*/
