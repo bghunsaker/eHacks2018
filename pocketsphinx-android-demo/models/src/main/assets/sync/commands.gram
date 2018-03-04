@@ -1,0 +1,9 @@
+#JSGF V1.0;
+
+grammar commands;
+
+<command> =  crouch     |
+             jump       |
+             shoot      ;
+
+public <commands> = <command>+;
