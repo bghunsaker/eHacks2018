@@ -48,7 +48,8 @@ public class CharacterInteraction : MonoBehaviour {
     {
         //Level i to Level i+1
         if (coll.gameObject.name == "Platform14" || coll.gameObject.name == "Platform2.5" 
-            || coll.gameObject.name == "Platform3.9" || coll.gameObject.name == "Platform4.13") {
+            || coll.gameObject.name == "Platform3.9" || coll.gameObject.name == "Platform4.13"
+            || coll.gameObject.name == "Platform5.Exit") {
             
             //Camera & Character Move to Next Level Position
             for( int i = 0; i < 68; i++)
@@ -79,7 +80,11 @@ public class CharacterInteraction : MonoBehaviour {
                 SceneManager.LoadScene(level);
                 SceneManager.UnloadSceneAsync(level - 1);
             }
-            //Add level 6 (level = 5)
+            if (coll.gameObject.name == "Platform5.Exit") {
+                level = 5;
+                SceneManager.LoadScene(level);
+                SceneManager.UnloadSceneAsync(level - 1);
+            }
             transform.Translate(5*Vector2.up);
         }
         //Death Scenarios LVL2
@@ -88,6 +93,7 @@ public class CharacterInteraction : MonoBehaviour {
             || coll.gameObject.name == "Spikes3.3" || coll.gameObject.name == "Spikes3.4" 
             || coll.gameObject.name == "Spikes4.1" || coll.gameObject.name == "Spikes4.2" 
             || coll.gameObject.name == "Spikes4.3")
+            //Add All Spikes Here
         {
             //Sets the user back to the start of Level 1
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
