@@ -151,3 +151,4 @@ db3b233e35a88802fed1717d19c3d9ec Assembly-CSharp.dll:.FollowTransform
 5ed681f8c7623ae594a840a22c848926 Assembly-CSharp.dll:PlatformBuilderPro.Platform
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:PlatformBuilderPro.ExportMeshStrategy
+052a124f51358fab312a1d9235abb9b1 Assembly-CSharp.dll:.BulletScript

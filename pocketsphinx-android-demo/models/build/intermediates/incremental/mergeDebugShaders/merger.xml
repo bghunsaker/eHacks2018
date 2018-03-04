@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Users\jacobacon95\Documents\eHacks18\eHacks2018\pocketsphinx-android-demo\models\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\Users\jacobacon95\Documents\eHacks18\eHacks2018\pocketsphinx-android-demo\models\src\debug\shaders"/></dataSet></merger>

@@ -1,0 +1,4 @@
+#Sat Mar 03 15:35:36 CST 2018
+base.0=C\:\\Users\\jacobacon95\\Documents\\eHacks18\\eHacks2018\\pocketsphinx-android-demo\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\2
+path.0=classes.dex
+renamed.0=classes.dex
