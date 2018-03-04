@@ -1,0 +1,12 @@
+#JSGF V1.0;
+
+grammar commands;
+
+<command> =  duck       |
+             jump       |
+             stop       |
+             go         |
+             start      |
+             shoot      ;
+
+public <commands> = <command>+;
